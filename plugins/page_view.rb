@@ -7,6 +7,8 @@ require 'chronic'
 module Jekyll
 
   class GoogleAnalytics < Generator
+    safe :true
+    priority :high
 
     def generate(site)
       if !site.config['page-view']

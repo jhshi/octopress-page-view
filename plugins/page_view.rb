@@ -51,6 +51,7 @@ module Jekyll
       results = Hash[response.data.rows]
 
       tot = 0
+      # display per post page view
       site.posts.each { |post|
         url = (site.config['baseurl'] || '') + post.url + 'index.html'
         hits = (results[url])? results[url].to_i : 0
@@ -58,13 +59,16 @@ module Jekyll
         tot += hits
       }
 
+      # calculate total page view
       site.pages.each { |page|
         url = (site.config['baseurl'] || '') + page.url
+        hits = (results[url])? results[url].to_i : 0
         tot += hits
       }
 
+      # display total page view in page
       site.pages.each { |page|
-        page.data.merge!("_pv" => hits)
+        page.data.merge!("_pv" => tot)
       }
     end
   end

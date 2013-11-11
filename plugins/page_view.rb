@@ -85,7 +85,7 @@ module Jekyll
     def render(context)
       site = context.environments.first['site']
       if !site['page-view']
-        return
+        return ''
       end
 
       post = context.environments.first['post']
